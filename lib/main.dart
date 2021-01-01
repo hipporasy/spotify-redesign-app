@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'src/theme/colors.dart';
-import 'src/theme/colors.dart';
+import 'package:flutter/services.dart';
+import 'package:spotify/src/screens/home/home.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,9 +11,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Spotify',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(primarySwatch: AppColor.primary),
-        home: Container());
+      title: 'Spotify',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primaryColor: Colors.white,
+      ),
+      home: HomeScreen(),
+    );
   }
 }
