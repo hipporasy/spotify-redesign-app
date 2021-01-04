@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
         value: SystemUiOverlayStyle.light,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [_buildHeader(), _buildExplore()],
+          children: [_buildHeader(), _buildExplore(), _buildTopChart()],
         ),
       ),
     );
@@ -43,23 +43,32 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemCount: 10,
                 itemBuilder: (BuildContext context, int index) {
                   return Container(
-                    margin: EdgeInsets.only(
-                        right: Dimens.smallMargin, left: Dimens.smallMargin),
                     child: _buildExploreCell(),
+                    margin: const EdgeInsets.only(
+                        left: Dimens.normalMargin, right: Dimens.normalMargin),
                   );
-                  // now im stuck :(
                 }),
           ),
-          // _buildExploreCell(),
-          // ListView.builder(
-          //     scrollDirection: Axis.horizontal,
-          //     itemCount: 10,
-          //     itemBuilder: (BuildContext context, int index) {
-          //       return Container(width: 120, color: Colors.white);
-          //       // now im stuck :(
-          //     })
+          Container(
+            padding: const EdgeInsets.all(Dimens.smallMargin),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text(
+                  'All New Release ',
+                  style: AppTextStyle.primaryTextStyle,
+                ),
+              ],
+            ),
+          )
         ],
       ),
+    );
+  }
+
+  Widget _buildTopChart() {
+    return Stack(
+      children: [_buildExploreCell()],
     );
   }
 
