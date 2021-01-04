@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:spotify/src/theme/colors.dart';
 import 'package:spotify/src/theme/dimens.dart';
 import 'package:spotify/src/theme/images.dart';
+import 'package:spotify/src/theme/textStyle.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -26,16 +27,37 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildExplore() {
     return Container(
-      padding: EdgeInsets.only(left: Dimens.normalMargin),
+      padding:
+          EdgeInsets.only(left: Dimens.normalMargin, top: Dimens.largeMargin),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Explore',
-            style:
-                TextStyle(fontSize: Dimens.extraLargeFont, color: Colors.white),
+          Text('Explore', style: AppTextStyle.extraLargeTextStyle),
+          SizedBox(
+            height: Dimens.largeMargin,
           ),
-          _buildExploreCell()
+          Container(
+            height: 180,
+            child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 10,
+                itemBuilder: (BuildContext context, int index) {
+                  return Container(
+                    margin: EdgeInsets.only(
+                        right: Dimens.smallMargin, left: Dimens.smallMargin),
+                    child: _buildExploreCell(),
+                  );
+                  // now im stuck :(
+                }),
+          ),
+          // _buildExploreCell(),
+          // ListView.builder(
+          //     scrollDirection: Axis.horizontal,
+          //     itemCount: 10,
+          //     itemBuilder: (BuildContext context, int index) {
+          //       return Container(width: 120, color: Colors.white);
+          //       // now im stuck :(
+          //     })
         ],
       ),
     );
@@ -50,11 +72,13 @@ class _HomeScreenState extends State<HomeScreen> {
           width: 120,
           height: 120,
         ),
+        SizedBox(height: Dimens.smallMargin),
+        Text('At last', style: AppTextStyle.largeTextStyle),
+        SizedBox(height: Dimens.smallMargin),
         Text(
-          'At last',
-          style: TextStyle(color: Colors.white, fontSize: Dimens.normalFont),
-        ),
-        Text('FM - 96')
+          'FM - 96',
+          style: AppTextStyle.lightTextStyle,
+        )
       ],
     );
   }
