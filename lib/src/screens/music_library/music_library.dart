@@ -40,9 +40,96 @@ class _MusicLibraryScreenState extends State<MusicLibraryScreen> {
                 )
               ],
             ),
+          ),
+          _buildExplore(),
+          _buildTrackCell(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildExplore() {
+    return Container(
+      padding:
+          EdgeInsets.only(left: Dimens.normalMargin, top: Dimens.largeMargin),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            height: 230,
+            child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 10,
+                itemBuilder: (BuildContext context, int index) {
+                  return Container(
+                    child: _buildExploreCell(),
+                    margin: const EdgeInsets.only(
+                        left: Dimens.normalMargin, right: Dimens.normalMargin),
+                  );
+                }),
+          ),
+          Container(
+            padding: const EdgeInsets.all(Dimens.smallMargin),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text(
+                  'View all albums ',
+                  style: AppTextStyle.primaryTextStyle,
+                ),
+              ],
+            ),
           )
         ],
       ),
+    );
+  }
+
+  Widget _buildExploreCell() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Image.asset(
+          Images.album,
+          width: 150,
+          height: 150,
+        ),
+        SizedBox(height: Dimens.smallMargin),
+        Text('At last', style: AppTextStyle.largeTextStyle),
+        SizedBox(height: Dimens.smallMargin),
+        Container(
+          width: 150,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                '1 Song',
+                style: AppTextStyle.lightTextStyle,
+              ),
+              Text(
+                '2017',
+                style: AppTextStyle.lightTextStyle,
+              )
+            ],
+          ),
+        )
+      ],
+    );
+  }
+
+  Widget _buildTrackCell() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          '1 First Yourself',
+          style: AppTextStyle.largeTextStyle,
+        ),
+        Text(
+          '2:56',
+          style: AppTextStyle.lightTextStyle,
+        ),
+      ],
     );
   }
 }
