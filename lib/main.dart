@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:spotify/src/screens/home/home.dart';
+import 'package:spotify/src/screens/master/master_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.white,
       ),
-      home: HomeScreen(),
+      home: MasterScreen(),
     );
   }
 }
