@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spotify/src/screens/player/player_screen.dart';
 import 'package:spotify/src/screens/track_list/track_list_screen.dart';
 import 'package:spotify/src/theme/colors.dart';
 import 'package:spotify/src/theme/dimens.dart';
@@ -149,31 +150,37 @@ class _MusicLibraryScreenState extends State<MusicLibraryScreen> {
   }
 
   Widget _buildTrackCell() {
-    return Container(
-      margin: const EdgeInsets.only(
-          left: Dimens.normalMargin, right: Dimens.normalMargin),
-      padding: const EdgeInsets.all(Dimens.normalMargin),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                '1 First Yourself',
-                style: AppTextStyle.largeTextStyle,
-              ),
-              Text(
-                '2:56',
-                style: AppTextStyle.lightTextStyle,
-              ),
-            ],
-          ),
-          SizedBox(height: Dimens.normalMargin),
-          Divider(
-            height: 1,
-            color: Colors.grey,
-          )
-        ],
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => PlayerScreen()));
+      },
+      child: Container(
+        margin: const EdgeInsets.only(
+            left: Dimens.normalMargin, right: Dimens.normalMargin),
+        padding: const EdgeInsets.all(Dimens.normalMargin),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  '1 First Yourself',
+                  style: AppTextStyle.largeTextStyle,
+                ),
+                Text(
+                  '2:56',
+                  style: AppTextStyle.lightTextStyle,
+                ),
+              ],
+            ),
+            SizedBox(height: Dimens.normalMargin),
+            Divider(
+              height: 1,
+              color: Colors.grey,
+            )
+          ],
+        ),
       ),
     );
   }

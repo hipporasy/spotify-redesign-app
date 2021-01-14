@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spotify/src/screens/player/player_screen.dart';
 import 'package:spotify/src/theme/colors.dart';
 import 'package:spotify/src/theme/dimens.dart';
 import 'package:spotify/src/theme/images.dart';
@@ -88,51 +89,63 @@ class _TrackListScreenState extends State<TrackListScreen> {
                 ],
               ),
             ),
-            Container(
-              padding: const EdgeInsets.all(Dimens.smallMargin),
-              height: 78,
-              color: Colors.black,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
+            Stack(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(Dimens.smallMargin),
+                  height: 78,
+                  color: Colors.black,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        "Get Away - ",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: Dimens.normalFont,
-                            fontWeight: FontWeight.w500),
+                      Row(
+                        children: [
+                          Text(
+                            "Get Away - ",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: Dimens.normalFont,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          Text(
+                            "Good Girl",
+                            style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: Dimens.normalFont),
+                          )
+                        ],
                       ),
-                      Text(
-                        "Good Girl",
-                        style: TextStyle(
-                            color: Colors.grey, fontSize: Dimens.normalFont),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.skip_previous,
+                            color: Colors.white,
+                          ),
+                          SizedBox(width: Dimens.normalMargin),
+                          Icon(
+                            Icons.skip_next,
+                            color: Colors.white,
+                          ),
+                          SizedBox(width: Dimens.normalMargin),
+                          Icon(
+                            Icons.repeat_sharp,
+                            color: Colors.white,
+                          ),
+                          SizedBox(width: Dimens.normalMargin)
+                        ],
                       )
                     ],
                   ),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.skip_previous,
-                        color: Colors.white,
-                      ),
-                      SizedBox(width: Dimens.normalMargin),
-                      Icon(
-                        Icons.skip_next,
-                        color: Colors.white,
-                      ),
-                      SizedBox(width: Dimens.normalMargin),
-                      Icon(
-                        Icons.repeat_sharp,
-                        color: Colors.white,
-                      ),
-                      SizedBox(width: Dimens.normalMargin)
-                    ],
-                  )
-                ],
-              ),
-            )
+                ),
+                Center(
+                  child: Icon(
+                    Icons.play_circle_fill,
+                    color: AppColor.primary,
+                    size: 56,
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),
@@ -165,41 +178,47 @@ class _TrackListScreenState extends State<TrackListScreen> {
   }
 
   Widget _buildTrackCell() {
-    return Container(
-      margin: const EdgeInsets.only(
-          left: Dimens.normalMargin, right: Dimens.normalMargin),
-      padding: const EdgeInsets.all(Dimens.normalMargin),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                '1 First Yourself',
-                style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
-                    fontSize: Dimens.largeFont),
-              ),
-              Text(
-                '2:56',
-                style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    color: Colors.grey,
-                    fontSize: Dimens.normalFont),
-              ),
-            ],
-          ),
-          SizedBox(height: Dimens.bigMargin),
-          Container(
-            padding: const EdgeInsets.only(
-                left: Dimens.smallMargin, right: Dimens.smallMargin),
-            child: Divider(
-              height: 1,
-              color: Colors.grey,
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => PlayerScreen()));
+      },
+      child: Container(
+        margin: const EdgeInsets.only(
+            left: Dimens.normalMargin, right: Dimens.normalMargin),
+        padding: const EdgeInsets.all(Dimens.normalMargin),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  '1 First Yourself',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+                      fontSize: Dimens.largeFont),
+                ),
+                Text(
+                  '2:56',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      color: Colors.grey,
+                      fontSize: Dimens.normalFont),
+                ),
+              ],
             ),
-          )
-        ],
+            SizedBox(height: Dimens.bigMargin),
+            Container(
+              padding: const EdgeInsets.only(
+                  left: Dimens.smallMargin, right: Dimens.smallMargin),
+              child: Divider(
+                height: 1,
+                color: Colors.grey,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
