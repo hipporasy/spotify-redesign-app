@@ -15,4 +15,6 @@ mixin AppTextStyle {
       TextStyle(color: AppColor.primary, fontSize: Dimens.largeFont);
   static const lightTextStyle =
       TextStyle(color: Colors.grey, fontSize: Dimens.normalFont);
+  static const largeLightTextStyle =
+      TextStyle(color: Colors.grey, fontSize: Dimens.largeFont);
 }
