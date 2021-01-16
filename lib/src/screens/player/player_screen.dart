@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spotify/src/screens/song_detail/song_detail_screen.dart';
 import 'package:spotify/src/theme/colors.dart';
 import 'package:spotify/src/theme/dimens.dart';
 import 'package:spotify/src/theme/images.dart';
@@ -12,7 +13,7 @@ class PlayerScreen extends StatefulWidget {
 class _PlayerScreenState extends State<PlayerScreen> {
   bool _isShuffle = false;
   bool _isActive = false;
-
+  bool _isTopTrackedSelected = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,11 +101,151 @@ class _PlayerScreenState extends State<PlayerScreen> {
                     ],
                   )
                 ],
+              ),
+              Expanded(
+                child: Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.only(left: Dimens.normalMargin),
+                      child: _buildSideText(),
+                    ),
+                    Expanded(
+                      child: ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          itemCount: 20,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Container(
+                              child: _buildTrackCell(),
+                              margin: const EdgeInsets.only(
+                                  left: Dimens.normalMargin,
+                                  right: Dimens.normalMargin),
+                            );
+                          }),
+                    )
+                  ],
+                ),
+              ),
+              Stack(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(Dimens.smallMargin),
+                    height: 78,
+                    color: Colors.black,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              "Get Away - ",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: Dimens.normalFont,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                            Text(
+                              "Good Girl",
+                              style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: Dimens.normalFont),
+                            )
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.skip_previous,
+                              color: Colors.white,
+                            ),
+                            SizedBox(width: Dimens.normalMargin),
+                            Icon(
+                              Icons.skip_next,
+                              color: Colors.white,
+                            ),
+                            SizedBox(width: Dimens.normalMargin),
+                            Icon(
+                              Icons.repeat_sharp,
+                              color: Colors.white,
+                            ),
+                            SizedBox(width: Dimens.normalMargin)
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                  Center(
+                    child: Icon(
+                      Icons.play_circle_fill,
+                      color: AppColor.primary,
+                      size: 56,
+                    ),
+                  ),
+                ],
               )
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildTrackCell() {
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => SongDetailScreen()));
+      },
+      child: Container(
+        margin: const EdgeInsets.only(
+            left: Dimens.normalMargin, right: Dimens.normalMargin),
+        padding: const EdgeInsets.all(Dimens.normalMargin),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  '1 First Yourself',
+                  style: AppTextStyle.largeTextStyle,
+                ),
+                Text(
+                  '2:56',
+                  style: AppTextStyle.lightTextStyle,
+                ),
+              ],
+            ),
+            SizedBox(height: Dimens.normalMargin),
+            Divider(
+              height: 1,
+              color: Colors.grey,
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSideText() {
+    return Column(
+      children: [
+        SizedBox(height: 20),
+        GestureDetector(
+          onTap: () {
+            setState(() {
+              this._isTopTrackedSelected = !_isTopTrackedSelected;
+            });
+          },
+          child: RotatedBox(
+            quarterTurns: 3,
+            child: Text(
+              'Top Tracks',
+              style: _isTopTrackedSelected
+                  ? AppTextStyle.primaryLargeTextStyle
+                  : AppTextStyle.largeTextStyle,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
