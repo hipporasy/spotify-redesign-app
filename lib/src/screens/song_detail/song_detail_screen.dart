@@ -11,7 +11,7 @@ class SongDetailScreen extends StatefulWidget {
 
 class _SongDetailScreenState extends State<SongDetailScreen> {
   bool _isShuffle = false;
-  bool _isActive = false;
+  bool _isRepeat = false;
   bool _isTopTrackedSelected = false;
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,8 @@ class _SongDetailScreenState extends State<SongDetailScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Icon(Icons.library_add, color: Colors.white),
+                  SizedBox(width: Dimens.smallMargin),
+                  Icon(Icons.library_add, color: Colors.grey),
                   Column(
                     children: [
                       Text(
@@ -55,10 +56,42 @@ class _SongDetailScreenState extends State<SongDetailScreen> {
                       ),
                     ],
                   ),
-                  Icon(Icons.more_vert, color: Colors.white),
+                  Icon(Icons.more_vert, color: Colors.grey),
+                  SizedBox(width: Dimens.smallMargin),
                 ],
               ),
               SizedBox(height: Dimens.largeMargin),
+              Row(
+                children: [
+                  Text(
+                    "2:45",
+                    style: AppTextStyle.lightTextStyle,
+                  ),
+                  Expanded(
+                    child: Slider(
+                      value: 50,
+                      max: 100,
+                      onChanged: (_) {},
+                      activeColor: AppColor.primary,
+                    ),
+                  ), // design this later :D
+
+                  Text("3:27", style: AppTextStyle.lightTextStyle)
+                ],
+              ),
+              SizedBox(height: Dimens.largeMargin),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Icon(Icons.shuffle,
+                      color: _isShuffle ? AppColor.primary : Colors.grey),
+                  Icon(Icons.skip_previous, color: Colors.white),
+                  Icon(Icons.pause_circle_filled, color: AppColor.primary),
+                  Icon(Icons.skip_next, color: Colors.white),
+                  Icon(Icons.repeat,
+                      color: _isRepeat ? AppColor.primary : Colors.grey)
+                ],
+              ),
               SizedBox(height: Dimens.largeMargin),
             ],
           ),
