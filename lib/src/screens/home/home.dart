@@ -68,8 +68,12 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildTopChart() {
-    return Stack(
-      children: [_buildExploreCell()],
+    return Expanded(
+      child: Stack(
+        children: [
+          _buildExploreCell(),
+        ],
+      ),
     );
   }
 

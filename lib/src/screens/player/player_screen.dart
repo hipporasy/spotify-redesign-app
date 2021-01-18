@@ -28,7 +28,6 @@ class _PlayerScreenState extends State<PlayerScreen> {
       ),
       body: SafeArea(
         child: Container(
-          padding: const EdgeInsets.all(Dimens.largeMargin),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -69,38 +68,42 @@ class _PlayerScreenState extends State<PlayerScreen> {
                 ),
               ),
               SizedBox(height: Dimens.largeMargin),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        _isShuffle = !_isShuffle;
-                      });
-                    },
-                    child: Icon(
-                      Icons.shuffle,
-                      color: _isShuffle ? AppColor.primary : AppColor.lightText,
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        "Offline",
-                        style: AppTextStyle.largeTextStyle,
+              Container(
+                padding: const EdgeInsets.all(Dimens.normalMargin),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _isShuffle = !_isShuffle;
+                        });
+                      },
+                      child: Icon(
+                        Icons.shuffle,
+                        color:
+                            _isShuffle ? AppColor.primary : AppColor.lightText,
                       ),
-                      Switch(
-                        activeColor: AppColor.primary,
-                        value: _isActive,
-                        onChanged: (bool value) {
-                          setState(() {
-                            _isActive = !_isActive;
-                          });
-                        },
-                      )
-                    ],
-                  )
-                ],
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          "Offline",
+                          style: AppTextStyle.largeTextStyle,
+                        ),
+                        Switch(
+                          activeColor: AppColor.primary,
+                          value: _isActive,
+                          onChanged: (bool value) {
+                            setState(() {
+                              _isActive = !_isActive;
+                            });
+                          },
+                        )
+                      ],
+                    )
+                  ],
+                ),
               ),
               Expanded(
                 child: Row(
@@ -238,7 +241,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
           child: RotatedBox(
             quarterTurns: 3,
             child: Text(
-              'Top Tracks',
+              'Tracklist',
               style: _isTopTrackedSelected
                   ? AppTextStyle.primaryLargeTextStyle
                   : AppTextStyle.largeTextStyle,

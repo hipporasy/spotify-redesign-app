@@ -19,11 +19,11 @@ class _SongDetailScreenState extends State<SongDetailScreen> {
       backgroundColor: AppColor.primaryBackground,
       appBar: AppBar(
         iconTheme: IconThemeData(
-          color: Colors.white, //change your color here
+          color: Colors.grey, //change your color here
         ),
         title: Text("At Last"),
         backgroundColor: Colors.transparent,
-        actions: [Icon(Icons.more_vert, color: Colors.white)],
+        actions: [Icon(Icons.queue_music, color: Colors.grey)],
       ),
       body: SafeArea(
         child: Container(
@@ -125,19 +125,26 @@ class _SongDetailScreenState extends State<SongDetailScreen> {
               SizedBox(height: Dimens.largeMargin),
               Expanded(
                 child: Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.only(
+                      left: Dimens.largeMargin, right: Dimens.largeMargin),
                   decoration: BoxDecoration(
-                      color: Colors.black45,
+                      color: Colors.black26,
                       borderRadius: BorderRadius.circular(Dimens.largeMargin)),
                   child: Column(
                     children: [
+                      SizedBox(height: Dimens.smallMargin),
+                      Text("Lyrics", style: AppTextStyle.largeTextStyle),
+                      SizedBox(height: Dimens.smallMargin),
                       Text(
-                        "Lyrics",
-                        style: AppTextStyle.largeTextStyle,
+                        "I’ve been aligned to things that, I’ve been aligned to things that, I’ve been aligned to things that, I’ve been aligned to things that, I’ve been aligned to things that, I’ve been aligned to things that, I’ve been aligned to things that",
+                        style: AppTextStyle.lightTextStyle,
+                        textAlign: TextAlign.center,
                       )
                     ],
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),
