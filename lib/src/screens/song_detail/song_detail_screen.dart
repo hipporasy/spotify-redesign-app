@@ -85,75 +85,63 @@ class _SongDetailScreenState extends State<SongDetailScreen> {
                 children: [
                   Icon(Icons.shuffle,
                       color: _isShuffle ? AppColor.primary : Colors.grey),
-                  Icon(Icons.skip_previous, color: Colors.white),
-                  Icon(Icons.pause_circle_filled, color: AppColor.primary),
-                  Icon(Icons.skip_next, color: Colors.white),
+                  Icon(Icons.skip_previous,
+                      color: Colors.white, size: Dimens.extraLargeMargin),
+                  Stack(
+                    children: [
+                      Positioned(
+                          left: 24,
+                          top: 12,
+                          child: Container(
+                            width: 24,
+                            height: 32,
+                            color: Colors.white,
+                          )),
+                      Icon(Icons.pause_circle_filled,
+                          color: AppColor.primary,
+                          size: Dimens.doubleExtraLargeMargin),
+                    ],
+                  ),
+                  Icon(Icons.skip_next,
+                      color: Colors.white, size: Dimens.extraLargeMargin),
                   Icon(Icons.repeat,
                       color: _isRepeat ? AppColor.primary : Colors.grey)
                 ],
               ),
+              SizedBox(
+                height: Dimens.largeMargin,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.cast, color: AppColor.primary),
+                  SizedBox(width: Dimens.normalMargin),
+                  Text(
+                    "Chromecast is ready",
+                    style: AppTextStyle.primaryTextStyle,
+                  )
+                ],
+              ),
               SizedBox(height: Dimens.largeMargin),
+              Expanded(
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.black45,
+                      borderRadius: BorderRadius.circular(Dimens.largeMargin)),
+                  child: Column(
+                    children: [
+                      Text(
+                        "Lyrics",
+                        style: AppTextStyle.largeTextStyle,
+                      )
+                    ],
+                  ),
+                ),
+              )
             ],
           ),
         ),
       ),
-    );
-  }
-
-  Widget _buildTrackCell() {
-    return GestureDetector(
-      onTap: () {},
-      child: Container(
-        margin: const EdgeInsets.only(
-            left: Dimens.normalMargin, right: Dimens.normalMargin),
-        padding: const EdgeInsets.all(Dimens.normalMargin),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  '1 First Yourself',
-                  style: AppTextStyle.largeTextStyle,
-                ),
-                Text(
-                  '2:56',
-                  style: AppTextStyle.lightTextStyle,
-                ),
-              ],
-            ),
-            SizedBox(height: Dimens.normalMargin),
-            Divider(
-              height: 1,
-              color: Colors.grey,
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildSideText() {
-    return Column(
-      children: [
-        SizedBox(height: 20),
-        GestureDetector(
-          onTap: () {
-            setState(() {
-              this._isTopTrackedSelected = !_isTopTrackedSelected;
-            });
-          },
-          child: RotatedBox(
-            quarterTurns: 3,
-            child: Text(
-              'Top Tracks',
-              style: _isTopTrackedSelected
-                  ? AppTextStyle.primaryLargeTextStyle
-                  : AppTextStyle.largeTextStyle,
-            ),
-          ),
-        ),
-      ],
     );
   }
 }
